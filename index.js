@@ -1,10 +1,15 @@
 import {traerColeccion, traerRol, consultaUno, actualizarUno} from './config/db.js';
 import express from 'express';
+import {rutas} from './services/crear.js'
+
 const PORT=3000;
 const api=express();
 api.use(express.json());
 
-api.post('/traercoleccion',async (req, res)=>{
+api.use('/traercoleccion', rutas)
+
+
+api.post('/traercoleccion' ,async (req, res)=>{
  const {status, response}= await traerColeccion()
     res.status(status).send({
         response
